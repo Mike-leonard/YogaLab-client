@@ -40,7 +40,7 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 <div className="form-control w-16">
-                    <input type="checkbox" className="toggle " defaultChecked onClick={toggleTheme} />
+                    <input type="checkbox" className="toggle " defaultChecked={theme === 'dark'} onClick={toggleTheme} />
                 </div>
                 {user?.email ?
                     <>
