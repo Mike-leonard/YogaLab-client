@@ -1,8 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import useTheme from '../../hooks/useTheme';
+
 
 const Header = () => {
-
+    const { theme, toggleTheme } = useTheme()
     const user = {}
     user.email = 'aa@aa.aa'
     const navItems = <>
@@ -20,7 +21,7 @@ const Header = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100">
+        <div className={`navbar ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,11 +34,14 @@ const Header = () => {
                 <Link to="/"> <img className="w-48" src="labga.png" alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 font-semibold">
                     {navItems}
                 </ul>
             </div>
             <div className="navbar-end">
+                <div className="form-control w-16">
+                    <input type="checkbox" className="toggle " defaultChecked onClick={toggleTheme} />
+                </div>
                 {user?.email ?
                     <>
                         <div className="avatar mr-4 cursor-pointer">

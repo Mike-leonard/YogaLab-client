@@ -1,8 +1,11 @@
-import React from 'react';
+import useTheme from "../../hooks/useTheme";
 
 const Footer = () => {
+    const {theme} = useTheme()
     return (
-        <div className="grid grid-cols-4 mx-auto w-5/6 mt-5">
+        <div className={` py-6 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'}`}>
+
+        <div className={`grid grid-cols-4 mx-auto w-5/6 mt-5`}>
             <div className="footer-1">
                 <h5 className="text-2xl"> HELP </h5>
                 <ul className="text-sm gap-2 flex flex-col mt-3">
@@ -32,7 +35,6 @@ const Footer = () => {
                 <ul className="text-sm gap-2 flex flex-col mt-3">
                     <li><a href="/search">Search Terms</a></li>
                     <li><a href="/search">Advanced Search</a></li>
-                    <li><a href="/pages/faqs">Help &amp; Faq's</a></li>
                     <li><a href="/pages/contact">Store Location</a></li>
                     <li><a href="/pages/wishlist">Orders &amp; Returns</a></li>
                 </ul>
@@ -49,6 +51,7 @@ const Footer = () => {
                     <li><a href="/products/slim-cotton-top">Slim Cotton Top</a></li>
                 </ul>
             </div>
+        </div>
         </div>
 
     );
