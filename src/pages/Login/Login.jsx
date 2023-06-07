@@ -1,19 +1,79 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useTheme from "../../hooks/useTheme";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
     const { theme } = useTheme()
     const { register, formState: { errors }, handleSubmit } = useForm()
-
+    const { signIn, googleSignIn } = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
     const [loginError, setLoginError] = useState('')
 
-    const handleLogin = data => { 
-
+    const handleLogin = data => {
+        setLoginError("")
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                Swal.fire({
+                    title: `${user.displayName}, Welcome back to YogaLab.`,
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                setLoginError(error.message)
+            })
     }
 
-    const handleGoogleSignIn = () => { }
+    const handleGoogleSignIn = () => { 
+        setLoginError("")
+        googleSignIn()
+            .then(result => {
+                const loggedInUser = result.user
+                console.log(loggedInUser)
+                const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student' }
+                axios.post('http://localhost:3000/users', savedUser, {
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        } else {
+                            Swal.fire({
+                                title: `${loggedInUser.displayName}, Welcome back to YogaLab.`,
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp'
+                                }
+                            });
+                        }
+                        navigate(from, { replace: true });
+                    })
+
+            }).catch(error => setLoginError(error.message));
+    }
+
+
     return (
         <div className="h-[600px] flex justify-center items-center">
             <div className="w-96 p-7 border rounded-md">
@@ -37,16 +97,12 @@ const Login = () => {
                         </label>
                         <input
                             type="password"
-                            {...register("password",
-                                {
-                                    required: "Password is required",
-
-                                })}
+                            {...register("password", { required: "Password is required", })}
                             className="input input-bordered w-full max-w-xs"
                         />
                         {errors.password && <p className="text-red-400" role="alert">{errors.password?.message}</p>}
                     </div>
-                    <input className={`btn w-full mt-5 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'}` } value='Login' type="submit" />
+                    <input className={`btn w-full mt-5 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'}`} value='Login' type="submit" />
                     <div>
                         {loginError && <p className="text-red-400">{loginError}</p>}
                     </div>

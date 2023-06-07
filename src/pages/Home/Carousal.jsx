@@ -12,7 +12,7 @@ import img4 from "../../assets/carousal/yoga-4.webp"
 
 const Carousal = () => {
     return (
-        <>
+        <div className="overflow-x-hidden">
             <Swiper
                 effect={"cube"}
                 grabCursor={true}
@@ -46,7 +46,7 @@ const Carousal = () => {
                     <img src={img4}  className="h-[500px] block w-full" />
                 </SwiperSlide>
             </Swiper>
-        </>
+        </div>
     );
 };
 
