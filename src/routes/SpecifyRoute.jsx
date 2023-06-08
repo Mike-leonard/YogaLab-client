@@ -1,22 +1,22 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useAdmin from "../hooks/useAdmin";
+import useRule from "../hooks/useRule";
 
-const AdminRoute = ({ children, type }) => {
+
+const SpecifyRoute = ({ children, type }) => {
     const { user, loading } = useAuth()
     const location = useLocation();
-    const [isAdmin, isAdminLoading] = useAdmin()
-    console.log("is Admin",isAdmin)
-    console.log("is type",type)
-
-    if (loading || isAdminLoading) {
+    const [isRule, isRouteLoading] = useRule()
+    console.log("is Admin", isRule)
+    console.log("is type", type)
+    if (loading || isRouteLoading) {
         return <progress className="progress w-56"></progress>
     }
 
-    if (user && isAdmin) {
+    if (user && isRule === type) {
         return children;
     }
     return <Navigate to="/" state={{ from: location }} replace></Navigate>
 };
 
-export default AdminRoute;
+export default SpecifyRoute;

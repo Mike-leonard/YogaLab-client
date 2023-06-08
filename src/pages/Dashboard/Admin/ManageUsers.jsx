@@ -40,7 +40,11 @@ const ManageUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
-                                <td>{(user.role === 'admin' || user.role === 'instructor') ? <p>Rules Applied </p> :
+                                <td>{(user.role === 'admin' || user.role === 'instructor') ?
+                                    <div className="flex flex-col gap-2">
+                                        <button onClick={() => handleMakeAdmin(user)} className="w-36 btn btn-ghost bg-orange-600  text-white" disabled>Make Admin</button>
+                                        <button onClick={() => handleMakeInstructor(user)} className="w-36 btn btn-ghost bg-orange-600  text-white" disabled>Make Instructor</button>
+                                    </div> :
                                     <div className="flex flex-col gap-2">
                                         <button onClick={() => handleMakeAdmin(user)} className="w-36 btn btn-ghost bg-orange-600  text-white">Make Admin</button>
                                         <button onClick={() => handleMakeInstructor(user)} className="w-36 btn btn-ghost bg-orange-600  text-white">Make Instructor</button>
