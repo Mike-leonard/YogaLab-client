@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useTheme from "../../hooks/useTheme";
-import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const { theme } = useTheme()

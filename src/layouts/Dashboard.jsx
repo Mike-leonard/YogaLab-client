@@ -24,7 +24,7 @@ const Dashboard = () => {
                 <div className="mt-20">
                     <ul className="menu p-4">
                         <li>
-                            <Link to="/dashboard" exa>
+                            <Link to="/dashboard">
                                 <FaTachometerAlt /> Home
                             </Link>
                         </li>
@@ -101,7 +101,7 @@ const Dashboard = () => {
                 >
                     <h1 className="text-xl font-semibold text-center">{isRule.toUpperCase()}</h1>
                 </div>
-                <div className="bg-red-700 mt-14">
+                <div className="mt-14 pt-1 px-5">
                     <Outlet />
                 </div>
             </div>
