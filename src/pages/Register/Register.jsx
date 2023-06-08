@@ -26,7 +26,8 @@ const Register = () => {
                             headers: { 'Content-Type': 'application/json'}
                         })
                             .then(data => {
-                                if (data.insertedId) {
+                                console.log(data)
+                                if (data.data.insertedId) {
                                     reset();
                                     Swal.fire({
                                         position: 'top-end',

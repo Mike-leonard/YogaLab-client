@@ -1,4 +1,3 @@
-import React from 'react';
 import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router';
 import { AuthContext } from '../context/AuthProvider';

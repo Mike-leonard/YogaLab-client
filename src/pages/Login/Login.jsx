@@ -48,7 +48,7 @@ const Login = () => {
                     headers: { 'Content-Type': 'application/json' }
                 })
                     .then(data => {
-                        if (data.insertedId) {
+                        if (data.data.insertedId) {
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',

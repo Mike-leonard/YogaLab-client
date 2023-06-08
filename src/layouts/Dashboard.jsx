@@ -102,7 +102,7 @@ const Dashboard = () => {
                     <div className={`${showSidebar ? 'w-9/12' : 'w-full'} transition-all duration-300`}>
                         {/* Main Content Header */}
                         <div
-                            className={`fixed w-full py-4 text-center ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
+                            className={`fixed w-full py-4 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
                                 }`}
                         >
                             <h1 className="text-xl font-semibold text-center">{isRule.toUpperCase()}</h1>

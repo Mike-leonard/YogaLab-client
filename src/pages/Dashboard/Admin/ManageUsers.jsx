@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
 
@@ -12,10 +13,45 @@ const ManageUsers = () => {
     })
     console.log(users)
 
-    const handleMakeAdmin = user => { }
-    const handleMakeInstructor = user => { }
-    const handleDelete = user => {
+    const handleMakeAdmin = async user => {
+        await axiosSecure.patch(`/users/admin/${user._id}?type=admin`, {
+            headers: { 'Content-Type': 'application/json' }
+        }).then(data => {
+            console.log(data)
+            if (data.data.modifiedCount) {
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } 
+        })
+    }
 
+    const handleMakeInstructor = async user => {
+        await axiosSecure.patch(`/users/admin/${user._id}?type=instructor`, {
+            headers: { 'Content-Type': 'application/json' }
+        }).then(data => {
+            console.log(data)
+            if (data.data.modifiedCount) {
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Instructor Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
+    }
+
+    const handleDelete = user => {
+        // TODO: implement this later
+        console.log(user)
     }
     return (
         <div>
