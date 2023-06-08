@@ -12,7 +12,7 @@ import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
 import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import GeneralHome from "../pages/Dashboard/GeneralHome";
-import AdminRoute from "./AdminRoute";
+import SpecifyRoute from "./SpecifyRoute";
 
 
 const router = createBrowserRouter([
@@ -45,34 +45,34 @@ const router = createBrowserRouter([
             /* Admin Route */
             {
                 path: 'manage-classes',
-                element: <AdminRoute type={'admin'}><ManageClasses /></AdminRoute>
+                element: <SpecifyRoute type={'admin'}><ManageClasses /></SpecifyRoute>
             },
             {
                 path: 'manage-users',
-                element: <AdminRoute type={'admin'}><ManageUsers /></AdminRoute>
+                element: <SpecifyRoute type={'admin'}><ManageUsers /></SpecifyRoute>
             },
 
             /* Instructor Routes */
             {
                 path: 'add-a-class',
-                element: <AddAClass />
+                element: <SpecifyRoute type={'instructor'}><AddAClass /></SpecifyRoute>
             },
             {
                 path: 'my-classes',
-                element: <MyClasses />
+                element: <SpecifyRoute type={'instructor'}> <MyClasses /> </SpecifyRoute>
             },
             /* Student Routes */
             {
                 path: 'selected-classes',
-                element: <MySelectedClasses />
+                element: <SpecifyRoute type={'student'}><MySelectedClasses /></SpecifyRoute>
             },
             {
                 path: 'enrolled-classes',
-                element: <MyEnrolledClasses />
+                element: <SpecifyRoute type={'student'}><MyEnrolledClasses /></SpecifyRoute>
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory />
+                element: <SpecifyRoute type={'student'}> <PaymentHistory /></SpecifyRoute>
             }
         ]
     }
