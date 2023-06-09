@@ -7,8 +7,7 @@ const SpecifyRoute = ({ children, type }) => {
     const { user, loading } = useAuth()
     const location = useLocation();
     const [isRule, isRouteLoading] = useRule()
-    console.log("is Admin", isRule)
-    console.log("is type", type)
+    
     if (loading || isRouteLoading) {
         return <progress className="progress w-56"></progress>
     }

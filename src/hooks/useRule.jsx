@@ -11,7 +11,6 @@ const useRule = () => {
         queryKey: ['isRule', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/${user?.email}`)
-            console.log("from use admin", res.data.role)
             return res.data.role
         }
     })

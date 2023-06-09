@@ -74,6 +74,7 @@ const Login = () => {
     }
 
 
+    /* TODO: show password implementation */
     return (
         <div className="h-[600px] flex justify-center items-center">
             <div className="w-96 p-7 border rounded-md">

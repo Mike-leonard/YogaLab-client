@@ -9,8 +9,6 @@ const Dashboard = () => {
     const [showSidebar, setShowSidebar] = useState(true);
     // const isRule = 'admin';
     const [isRule, isRouteLoading] = useRule()
-    console.log(isRule)
-
 
     const toggleSidebar = () => {
         setShowSidebar(!showSidebar);
