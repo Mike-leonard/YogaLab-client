@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
