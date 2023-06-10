@@ -13,6 +13,8 @@ import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import GeneralHome from "../pages/Dashboard/GeneralHome";
 import SpecifyRoute from "./SpecifyRoute";
+import Instructor from "../pages/Instructor/Instructor";
+import Courses from "../pages/Courses/Courses";
 
 
 const router = createBrowserRouter([
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/instructors',
+                element: <Instructor />
+            },
+            {
+                path: '/classes',
+                element: <Courses />
             },
         ]
     },
