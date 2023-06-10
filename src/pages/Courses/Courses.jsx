@@ -2,15 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import useTheme from "../../hooks/useTheme";
 import axios from "axios";
 import { FaChair } from "react-icons/fa";
-import useRule from "../../hooks/useRule";
+
 import ClassesButton from "../../components/ClassesButton";
 import DisabledClassesButton from "../../components/DisabledClassesButton";
+import useAuth from "../../hooks/useAuth";
+import useClassRule from "../../hooks/useClassRule";
 
 const Courses = () => {
 
     const { theme } = useTheme()
-    const [isRule, isRouteLoading] = useRule()
-
+    const {user} = useAuth()
+    const [isRule, isRouteLoading] = useClassRule()
+    
+    console.log(user)
     const { data: classes = [], isLoading } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
@@ -20,11 +24,11 @@ const Courses = () => {
     });
 
 
-    console.log(classes)
+    //console.log(classes)
     console.log(isRule)
 
     // TODO: follow this for other routes to loading
-    if (isLoading) {
+    if (isLoading && isRouteLoading) {
         return <div>Loading...</div>;
     }
 
@@ -59,7 +63,9 @@ const Courses = () => {
                                     ${cls.price}.00
                                 </div>
                                 {
-                                    (isRule === 'student' && cls?.available_seat - cls?.enroll_student > 0) ? <ClassesButton /> : <DisabledClassesButton />
+                                    cls?.available_seat - cls?.enroll_student > 0 && (!isRule || isRule !== 'instructor' && isRule !== 'admin') 
+                                        ? <ClassesButton cls={cls} />
+                                        : <DisabledClassesButton />
                                 }
                             </div>
                         </div>
