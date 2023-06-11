@@ -15,6 +15,7 @@ import GeneralHome from "../pages/Dashboard/GeneralHome";
 import SpecifyRoute from "./SpecifyRoute";
 import Instructor from "../pages/Instructor/Instructor";
 import Courses from "../pages/Courses/Courses";
+import Payment from "../pages/Dashboard/Student/Payment";
 
 
 const router = createBrowserRouter([
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
             {
                 path: 'enrolled-classes',
                 element: <SpecifyRoute type={'student'}><MyEnrolledClasses /></SpecifyRoute>
+            },
+            {
+                path: 'payment',
+                element: <SpecifyRoute type={'student'}> <Payment /></SpecifyRoute>
             },
             {
                 path: 'payment-history',

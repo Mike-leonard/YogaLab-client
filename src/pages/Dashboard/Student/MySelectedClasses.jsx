@@ -2,12 +2,17 @@ import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
 
     const [cart, refetch] = useCart()
     const [axiosSecure] = useAxiosSecure()
-
+    // calculating total
+     let totalAmount
+    if (cart !== null) {
+        totalAmount = cart.reduce((sum, item) => item.price + sum, 0)
+    }
     const handleDeleteCart =course => {
         console.log(course)
         Swal.fire({
@@ -68,6 +73,19 @@ const MySelectedClasses = () => {
 
 
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan="5"></td>
+                            <td>Total Amount :</td>
+                            <td className="text-xl">${totalAmount}.00</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="6"></td>
+                            <td>
+                                <Link to="/dashboard/payment" className="btn btn-primary px-8">Pay</Link>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
 
             </div>
