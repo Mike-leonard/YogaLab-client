@@ -3,34 +3,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useEnrolledCourses from "../../../hooks/useEnrolledCourses";
 
 const MyEnrolledClasses = () => {
-    const [enrolledClasses, refetch] = useEnrolledCourses()
+    const [enrolledClasses] = useEnrolledCourses()
     const [axiosSecure] = useAxiosSecure()
-    //console.log(enrolledClasses.paidItemsId)
-    //const paidItemsID =  enrolledClasses.map(items => items.paidItemsId)
-    // console.log(paidItemsID)
-
-    /*    const payment = {
-           email: user?.email,
-           transactionId,
-           price,
-           date: new Date(),
-           paidItemsName: cart.map(item => item.courseName),
-           paidItemsId: cart.map(item => item.courseItemId),
-           cartItemsId: cart.map(item => item._id)
-       }
-       axiosSecure.get('/payments', payment)
-           .then(res => {
-               console.log(res.data)
-               if (res.data.insertResult.insertedId) {
-                   // display
-               }
-           }) */
-
-    /*  axiosSecure.get(`/enroll-courses?enrolled=${enrolledClassesArray}`)
-    .then(res => {
-        console.log(res.data)
-    })
-    */
     const enrolledClassesArray = JSON.stringify(enrolledClasses);
 
     const { data: classes = [] } = useQuery({
@@ -40,7 +14,7 @@ const MyEnrolledClasses = () => {
             return res.data
         }
     })
-    console.log(classes)
+    //console.log(classes)
 
 
     return (

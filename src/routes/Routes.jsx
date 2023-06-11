@@ -16,12 +16,14 @@ import SpecifyRoute from "./SpecifyRoute";
 import Instructor from "../pages/Instructor/Instructor";
 import Courses from "../pages/Courses/Courses";
 import Payment from "../pages/Dashboard/Student/Payment";
+import ErrorPage from "../components/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
