@@ -2,14 +2,17 @@ import { useState } from 'react';
 import { FaBars, FaBookOpen, FaTachometerAlt, FaChalkboardTeacher, FaPeopleCarry, FaWallet, FaCalendarAlt, FaHome, FaUsers } from 'react-icons/fa';
 import useTheme from '../hooks/useTheme';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import useRule from '../hooks/useRule';
+import useClassRule from '../hooks/useClassRule';
 
 const Dashboard = () => {
     const { theme } = useTheme();
     const [showSidebar, setShowSidebar] = useState(true);
     // const isRule = 'admin';
-    const [isRule, isRouteLoading] = useRule()
+    
+    // warning changed useRule to useClassRule
+    const [isRule, isRouteLoading] = useClassRule()
 
+    console.log(isRule)
     const toggleSidebar = () => {
         setShowSidebar(!showSidebar);
     };
@@ -103,7 +106,7 @@ const Dashboard = () => {
                             className={`fixed w-full py-4 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
                                 }`}
                         >
-                            <h1 className="text-xl font-semibold text-center">{isRule.toUpperCase()}</h1>
+                            <h1 className="text-xl font-semibold text-center">{isRule?.toUpperCase()}</h1>
                         </div>
                         <div className="mt-14 pt-1 px-5">
                             <Outlet />

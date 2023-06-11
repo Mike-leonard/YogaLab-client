@@ -2,19 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import useTheme from "../../hooks/useTheme";
 import axios from "axios";
 import { FaChair } from "react-icons/fa";
-
 import ClassesButton from "../../components/ClassesButton";
 import DisabledClassesButton from "../../components/DisabledClassesButton";
-import useAuth from "../../hooks/useAuth";
 import useClassRule from "../../hooks/useClassRule";
 
 const Courses = () => {
 
     const { theme } = useTheme()
-    const {user} = useAuth()
     const [isRule, isRouteLoading] = useClassRule()
     
-    console.log(user)
     const { data: classes = [], isLoading } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
@@ -25,7 +21,7 @@ const Courses = () => {
 
 
     //console.log(classes)
-    console.log(isRule)
+    //console.log(isRule)
 
     // TODO: follow this for other routes to loading
     if (isLoading && isRouteLoading) {

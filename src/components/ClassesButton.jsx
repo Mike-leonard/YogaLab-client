@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ClassesButton = ({ cls }) => {
-    const { class_name, price, enroll_student, available_seat, _id } = cls
+    const { class_name, price, enroll_student, available_seat, instructor_name, imgURL, _id } = cls
     const { user } = useAuth()
-    //const [, refetch] = useCart()
+    const [, refetch] = useCart()
     const navigate = useNavigate()
     const location = useLocation()
     const [axiosSecure] = useAxiosSecure()
@@ -17,22 +17,22 @@ const ClassesButton = ({ cls }) => {
         if (user && user.email) {
             const cartItem = {
                 courseItemId: _id,
-                courseName: class_name, totalSeat: available_seat,
-                enrollStudent: enroll_student, price, email: user.email
+                courseName: class_name, instructorName: instructor_name, coursePhoto: imgURL,
+                totalSeat: available_seat, enrollStudent: enroll_student, price, email: user.email
             }
             axiosSecure.post('/carts', cartItem)
-            .then(data => {
-                if (data.data.insertedId) {
-                    //refetch()
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Course added on the cart.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
+                .then(data => {
+                    if (data.data.insertedId) {
+                        refetch()
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Course added on the cart. Go to Dashboard to find your Cart Item',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
         }
         else {
             Swal.fire({
