@@ -9,11 +9,12 @@ const MySelectedClasses = () => {
     const [cart, refetch] = useCart()
     const [axiosSecure] = useAxiosSecure()
     // calculating total
-     let totalAmount
+    let totalAmount
     if (cart !== null) {
         totalAmount = cart.reduce((sum, item) => item.price + sum, 0)
     }
-    const handleDeleteCart =course => {
+    console.log(cart)
+    const handleDeleteCart = course => {
         console.log(course)
         Swal.fire({
             title: 'Are you sure?',
@@ -26,16 +27,16 @@ const MySelectedClasses = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/carts/${course._id}`)
-                .then(data => {
-                    if (data.data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your cart item has been deleted.',
-                            'success'
-                        )
-                    }
-                })
+                    .then(data => {
+                        if (data.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your cart item has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
             }
         })
     }
@@ -65,6 +66,7 @@ const MySelectedClasses = () => {
                                 <td>{course.totalSeat - course.enrollStudent}</td>
                                 <td className="text-right">${course.price}</td>
                                 <td>
+
                                     <button onClick={() => handleDeleteCart(course)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
 
                                 </td>
@@ -82,7 +84,10 @@ const MySelectedClasses = () => {
                         <tr>
                             <td colSpan="6"></td>
                             <td>
-                                <Link to="/dashboard/payment" className="btn btn-primary px-8">Pay</Link>
+                                {totalAmount > 0 ? <Link to="/dashboard/payment" className="btn btn-primary px-8">Pay</Link> : ""
+
+                                }
+
                             </td>
                         </tr>
                     </tfoot>
