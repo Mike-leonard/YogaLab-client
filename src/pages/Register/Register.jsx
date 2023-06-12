@@ -22,8 +22,8 @@ const Register = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const saveUser = { name: data.name, email: data.email, role: 'student' }
-                        axios.post('http://localhost:3000/users', saveUser, {
-                            headers: { 'Content-Type': 'application/json'}
+                        axios.post('https://yogalab-server.vercel.app/users', saveUser, {
+                            headers: { 'Content-Type': 'application/json' }
                         })
                             .then(data => {
                                 console.log(data)

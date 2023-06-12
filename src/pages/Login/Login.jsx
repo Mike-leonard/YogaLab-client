@@ -43,14 +43,14 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignIn = () => { 
+    const handleGoogleSignIn = () => {
         setLoginError("")
         googleSignIn()
             .then(result => {
                 const loggedInUser = result.user
                 console.log(loggedInUser)
                 const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student' }
-                axios.post('http://localhost:3000/users', savedUser, {
+                axios.post('https://yogalab-server.vercel.app/users', savedUser, {
                     headers: { 'Content-Type': 'application/json' }
                 })
                     .then(data => {
@@ -79,8 +79,6 @@ const Login = () => {
             }).catch(error => setLoginError(error.message));
     }
 
-
-    /* TODO: show password implementation */
     return (
         <div className="h-[600px] flex justify-center items-center">
             <div className="w-96 p-7 border rounded-md">

@@ -14,12 +14,11 @@ const CheckoutForm = ({ price, cart }) => {
     const [axiosSecure] = useAxiosSecure()
     const { user } = useAuth()
 
-    //TODO: later try without useEffect
     useEffect(() => {
         if(price > 0){
             axiosSecure.post("/create-payment-intent", { price })
                 .then(res => {
-                    console.log(res.data.clientSecret)
+                   // console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -38,7 +37,7 @@ const CheckoutForm = ({ price, cart }) => {
             return
         }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });

@@ -8,7 +8,7 @@ const PopularInstructor = () => {
     const { data: instructors = [], isLoading } = useQuery({
         queryKey: ['role'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/users/instructor?limit=6')
+            const res = await axios.get('https://yogalab-server.vercel.app/users/instructor?limit=6')
             return res.data
         }
     });

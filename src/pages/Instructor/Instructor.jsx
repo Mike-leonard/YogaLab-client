@@ -2,6 +2,7 @@ import { FaBookReader, FaHeart, FaPeopleArrows } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useTheme from "../../hooks/useTheme";
+import LoadingAnimation from "../../components/LoadingAnimation";
 
 
 const Instructor = () => {
@@ -12,16 +13,13 @@ const Instructor = () => {
     const { data: instructors = [], isLoading } = useQuery({
         queryKey: ['role'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/users/instructor')
+            const res = await axios.get('https://yogalab-server.vercel.app/users/instructor')
             return res.data
         }
     });
 
-
-
-    // TODO: follow this for other routes to loading
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <LoadingAnimation />
     }
 
     console.log(instructors)

@@ -17,15 +17,13 @@ const Modal = ({ isOpen, onClose, children, course, refetch }) => {
     };
 
     const handleSubmit = async () => {
-        console.log('Submitted:', text)
-        console.log('Course:', course)
-
         await axiosSecure.patch(`classes/${course._id}?statusType=denied&feedback=${text}`, {
             headers: { 'Content-Type': 'application/json' }
         }).then(data => {
             console.log(data)
             if (data.data.modifiedCount) {
                 refetch()
+                setText('')
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -38,8 +36,6 @@ const Modal = ({ isOpen, onClose, children, course, refetch }) => {
 
         onClose();
     };
-
-    // TODO: need to check when many data modals is same or not
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">

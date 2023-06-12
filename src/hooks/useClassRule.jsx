@@ -9,13 +9,13 @@ const useClassRule = () => {
         queryKey: ['isRule', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/users/${user?.email}`)
-            if(res.data?.role === undefined){
+            const res = await axios.get(`https://yogalab-server.vercel.app/users/${user?.email}`)
+            if (res.data?.role === undefined) {
                 return null
             } else {
                 return res.data?.role
             }
-            
+
         }
     })
 

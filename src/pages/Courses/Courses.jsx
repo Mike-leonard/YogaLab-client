@@ -5,27 +5,23 @@ import { FaChair } from "react-icons/fa";
 import ClassesButton from "../../components/ClassesButton";
 import DisabledClassesButton from "../../components/DisabledClassesButton";
 import useClassRule from "../../hooks/useClassRule";
+import LoadingAnimation from "../../components/LoadingAnimation";
 
 const Courses = () => {
 
     const { theme } = useTheme()
     const [isRule, isRouteLoading] = useClassRule()
-    
+
     const { data: classes = [], isLoading } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/classes?status=approved')
+            const res = await axios.get('https://yogalab-server.vercel.app/classes?status=approved')
             return res.data
         }
     });
 
-
-    //console.log(classes)
-    //console.log(isRule)
-
-    // TODO: follow this for other routes to loading
     if (isLoading && isRouteLoading) {
-        return <div>Loading...</div>;
+        return <LoadingAnimation />
     }
 
     return (
@@ -38,7 +34,7 @@ const Courses = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
-                    classes.map((cls, index) => <div key={index} className={` cursor-pointer w-80 mx-auto mb-10 rounded-lg p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300  ${theme === 'light' ? 'bg-[#DC2C5C]' : 'bg-[#030508]'} ${cls?.available_seat - cls?.enroll_student === 0 ? 'bg-red-800': ''}`}>
+                    classes.map((cls, index) => <div key={index} className={` cursor-pointer w-80 mx-auto mb-10 rounded-lg p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300  ${theme === 'light' ? 'bg-[#DC2C5C]' : 'bg-[#030508]'} ${cls?.available_seat - cls?.enroll_student === 0 ? 'bg-red-800' : ''}`}>
                         <figure className="mb-2">
                             <img src={cls.imgURL ? cls.imgURL : "https://srv-cdn.onedio.com/store/988bccbdb9ca395f581f98faa9ce3a55123f12bfcef608c838532b813646e557.png"} alt="" className="h-64 ml-auto mr-auto" />
                         </figure>
@@ -59,7 +55,7 @@ const Courses = () => {
                                     ${cls.price}.00
                                 </div>
                                 {
-                                    cls?.available_seat - cls?.enroll_student > 0 && (!isRule || isRule !== 'instructor' && isRule !== 'admin') 
+                                    cls?.available_seat - cls?.enroll_student > 0 && (!isRule || isRule !== 'instructor' && isRule !== 'admin')
                                         ? <ClassesButton cls={cls} />
                                         : <DisabledClassesButton />
                                 }

@@ -11,7 +11,7 @@ const PopularClasses = () => {
     const { data: classes = [], isLoading } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/classes?status=approved&sort=top')
+            const res = await axios.get('https://yogalab-server.vercel.app/classes?status=approved&sort=top')
             return res.data
         }
     });

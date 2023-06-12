@@ -18,7 +18,6 @@ const MobileApplication = () => {
                     <p className="text-sm italic text-center my-2">YogaLab Application</p>
                     <p className="w-5/6 mx-auto">A great app for beginners, app gives users short sessions that they can fit in anywhere, anytime. Each pose includes an animated illustration plus instructions to make sure you’re training safely. They are perfect for when you feel crunched for time respectively.</p>
                     <div className="flex flex-col md:flex-row gap-5 md:gap-14 my-12  justify-center">
-                        {/* TODO: if have enough time play with button color with theme */}
                         <button className="btn btn-primary rounded-full">
                             <div className='text-4xl'>
                                 <FaAppStore />

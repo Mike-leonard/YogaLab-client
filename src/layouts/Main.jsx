@@ -5,8 +5,6 @@ import FooterAboveMap from '../components/FooterAvobe';
 import { useEffect, useState } from 'react';
 import LoadingAnimation from '../components/LoadingAnimation';
 
-
-
 const Main = () => {
 
     const [isLoading, setIsLoading] = useState(true);

@@ -9,8 +9,8 @@ const ManageClasses = () => {
 
     const [axiosSecure] = useAxiosSecure()
 
-    const { data: classes = [], refetch } = useQuery(['classes'], async () => {
-        const res = await axiosSecure.get('/classes')
+    const { data: classes = [], refetch } = useQuery(['classesAdmin'], async () => {
+        const res = await axiosSecure.get('/classes/Admin')
         return res.data
     })
 
@@ -28,7 +28,7 @@ const ManageClasses = () => {
         console.log(selectedCourse)
     };
 
-
+console.log(classes)
     const handleApprove = async course => {
         await axiosSecure.patch(`/classes/${course._id}?statusType=approved`, {
             headers: { 'Content-Type': 'application/json' }

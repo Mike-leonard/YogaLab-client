@@ -5,7 +5,7 @@ import useAuth from './useAuth';
 
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://yogalab-server.vercel.app',
 });
 
 const useAxiosSecure = () => {
@@ -28,7 +28,6 @@ const useAxiosSecure = () => {
                 if (error.response && (error.response.status === 401 || error.response.status === 403)) {
                     await logOut();
                     navigate('/');
-                    /* TODO: can pass it to root directory */
                 }
                 return Promise.reject(error);
             }

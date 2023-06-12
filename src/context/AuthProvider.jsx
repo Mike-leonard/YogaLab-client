@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
             setUser(loggedUser)
             // setting up jwt on storage
             if (loggedUser) {
-                axios.post('http://localhost:3000/jwt', {
+                axios.post('https://yogalab-server.vercel.app/jwt', {
                     email: loggedUser.email
                 })
                     .then(data => {

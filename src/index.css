@@ -74,20 +74,18 @@
 
 .loading-item-0 {
     background-color: #7c3939;
-    /* Red */
 }
 
 .loading-item-1 {
     background-color: #101010;
-    /* Green */
 }
 
 .loading-item-2 {
-    background-color: #f405c4;
-    /* Blue */
+    background-color: #940177;
 }
 
 .loading-item-3 {
-    background-color: #02f92f;
-    /* Yellow */
+    background-color: #619f04;
 }
+
+

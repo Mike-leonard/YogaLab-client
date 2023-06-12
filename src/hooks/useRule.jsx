@@ -4,7 +4,6 @@ import useAxiosSecure from "./useAxiosSecure";
 
 
 const useRule = () => {
-    // TODO: new add
     const { user,loading } = useAuth()
     const [axiosSecure] = useAxiosSecure()
 

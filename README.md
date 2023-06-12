@@ -28,4 +28,4 @@
 **Technology Stack: The website is built using React for the frontend, Node.js and Express for the backend, tailwind CSS for styling, Tanstack Query for data fetching, Axios for API communication, Stripe for payment processing, ImageBB for image hosting, JWT for authentication, and MongoDB for the database.**
 
 ## Live Site
-[Visit YogaLab Live Website]()
+[Visit YogaLab Live Website](https://yoga-lab-16ef6.web.app)
