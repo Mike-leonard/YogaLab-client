@@ -1,21 +1,41 @@
+import { useEffect, useState } from "react";
 import Carousal from "./Carousal";
 import MobileApplication from "./MobileApplication";
 import PopularClasses from "./PopularClasses";
 import PopularInstructor from "./PopularInstructor";
-import PracticeYoga from "./PracticeYoga";
+import { AnimatePresence } from "framer-motion";
 
 const Home = () => {
-
+    const [isPopularClassesVisible, setPopularClassesVisible] = useState(false)
+    const [isPopularInstructorVisible, setPopularInstructorVisible] = useState(false)
+    const [isMobileApplicationVisible, setMobileApplicationVisible] = useState(false)
+    useEffect(() => {
+        setPopularClassesVisible(true);
+        setPopularInstructorVisible(true);
+        setMobileApplicationVisible(true);
+    }, []);
     return (
         <div>
             <Carousal />
-            <PopularClasses />
+            <AnimatePresence>
+                {isPopularClassesVisible && (
+                    <PopularClasses key="popular-classes" />
+                )}
+            </AnimatePresence>
             <div className="divider w-5/6 mx-auto"></div>
-            <PracticeYoga />
+            {/*  <PracticeYoga /> */}
+            {/* <div className="divider w-5/6 mx-auto"></div> */}
+            <AnimatePresence>
+                {isPopularInstructorVisible && (
+                    <PopularInstructor key="popular-instructor" />
+                )}
+            </AnimatePresence>
             <div className="divider w-5/6 mx-auto"></div>
-            <PopularInstructor />
-            <div className="divider w-5/6 mx-auto"></div>
-            <MobileApplication />
+            <AnimatePresence>
+                {isMobileApplicationVisible && (
+                    <MobileApplication key="mobile-application" />
+                )}
+            </AnimatePresence>
             <div className="divider w-5/6 mx-auto"></div>
         </div>
     );

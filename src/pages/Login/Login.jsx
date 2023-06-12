@@ -5,15 +5,21 @@ import useTheme from "../../hooks/useTheme";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const { theme } = useTheme()
+    const [showPassword, setShowPassword] = useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm()
     const { signIn, googleSignIn } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
     const [loginError, setLoginError] = useState('')
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleLogin = data => {
         setLoginError("")
@@ -96,12 +102,25 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text-alt">Password</span>
                         </label>
-                        <input
-                            type="password"
-                            {...register("password", { required: "Password is required", })}
-                            className="input input-bordered w-full max-w-xs"
-                        />
-                        {errors.password && <p className="text-red-400" role="alert">{errors.password?.message}</p>}
+                        <div className="relative">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                {...register('password', { required: 'Password is required' })}
+                                className="input input-bordered w-full max-w-xs"
+                            />
+                            <button
+                                type="button"
+                                onClick={togglePasswordVisibility}
+                                className="absolute inset-y-0 right-0 px-2 flex items-center focus:outline-none"
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
+                        </div>
+                        {errors.password && (
+                            <p className="text-red-400" role="alert">
+                                {errors.password.message}
+                            </p>
+                        )}
                     </div>
                     <input className={`btn w-full mt-5 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'}`} value='Login' type="submit" />
                     <div>

@@ -52,5 +52,42 @@
 .StripeElementFpx {
     padding: 0;
 }
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
+.loading-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
 
+.loading-item {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+
+.loading-item-0 {
+    background-color: #7c3939;
+    /* Red */
+}
+
+.loading-item-1 {
+    background-color: #101010;
+    /* Green */
+}
+
+.loading-item-2 {
+    background-color: #f405c4;
+    /* Blue */
+}
+
+.loading-item-3 {
+    background-color: #02f92f;
+    /* Yellow */
+}

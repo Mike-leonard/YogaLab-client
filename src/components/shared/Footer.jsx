@@ -1,11 +1,12 @@
 import useTheme from "../../hooks/useTheme";
 
+// https://yogalab-server.vercel.app/
 const Footer = () => {
     const {theme} = useTheme()
     return (
         <div className={` py-6 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'}`}>
 
-        <div className={`grid grid-cols-4 mx-auto w-5/6 mt-5`}>
+        <div className={`grid gap-y-12 md:grid-cols-4 mx-auto w-5/6 mt-5`}>
             <div className="footer-1">
                 <h5 className="text-2xl"> HELP </h5>
                 <ul className="text-sm gap-2 flex flex-col mt-3">
