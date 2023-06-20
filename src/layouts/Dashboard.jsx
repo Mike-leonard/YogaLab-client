@@ -6,15 +6,15 @@ import useClassRule from '../hooks/useClassRule';
 
 const Dashboard = () => {
     const { theme } = useTheme();
-    const [showSidebar, setShowSidebar] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
     // const isRule = 'admin';
-    
+
     // warning changed useRule to useClassRule
     const [isRule, isRouteLoading] = useClassRule()
 
-    console.log(isRule)
     const toggleSidebar = () => {
-        setShowSidebar(!showSidebar);
+        setIsSidebarOpen(!isSidebarOpen);
     };
 
     return (
@@ -24,12 +24,12 @@ const Dashboard = () => {
                 <div className="flex h-screen">
                     {/* Sidebar */}
                     <div
-                        className={`${showSidebar ? 'w-3/12' : 'w-0'} ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
-                            } transition-all duration-300 ${showSidebar ? 'opacity-100' : 'opacity-0'}`}
+                        className={`${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
+                            } ${isSidebarOpen ? 'w-64' : 'w-0'}  flex-shrink-0 sidebar`}
                     >
                         {/* Sidebar Content */}
-                        <div className="mt-20">
-                            <ul className="menu p-4">
+                        <div className={`mt-20 ${isSidebarOpen ? 'show-menu' : 'hidden-menu'}`}>
+                            <ul className={`menu p-4 w-64 ${isSidebarOpen ? 'show-menu' : 'hidden-menu'}`}>
                                 <li>
                                     <Link to="/dashboard">
                                         <FaTachometerAlt /> Home
@@ -100,15 +100,15 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className={`${showSidebar ? 'w-9/12' : 'w-full'} transition-all duration-300`}>
+                    <div className={`flex flex-col flex-1`}>
                         {/* Main Content Header */}
                         <div
-                            className={`fixed w-full py-4 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
+                            className={` py-4 ${theme === 'light' ? 'bg-[#DC2C5C] text-white' : 'bg-[#030508]'
                                 }`}
                         >
                             <h1 className="text-xl font-semibold text-center">{isRule?.toUpperCase()}</h1>
                         </div>
-                        <div className="mt-14 pt-1 px-5">
+                        <div className="flex-1 overflow-y-auto p-4">
                             <Outlet />
                         </div>
                     </div>

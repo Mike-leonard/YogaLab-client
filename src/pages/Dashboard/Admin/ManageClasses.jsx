@@ -9,8 +9,8 @@ const ManageClasses = () => {
 
     const [axiosSecure] = useAxiosSecure()
 
-    const { data: classes = [], refetch } = useQuery(['classesAdmin'], async () => {
-        const res = await axiosSecure.get('/classes/Admin')
+    const { data: classes = [], refetch } = useQuery(['classes'], async () => {
+        const res = await axiosSecure.get('/classes')
         return res.data
     })
 

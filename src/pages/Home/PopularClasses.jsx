@@ -4,9 +4,11 @@ import axios from "axios";
 import { FaPeopleArrows } from "react-icons/fa";
 
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 
 const PopularClasses = () => {
+    const navigate = useNavigate()
     const { theme } = useTheme()
     const { data: classes = [], isLoading } = useQuery({
         queryKey: ['classes'],
@@ -15,6 +17,11 @@ const PopularClasses = () => {
             return res.data
         }
     });
+
+    const viewMore = course => {
+        console.log(course)
+        navigate(`/classes/${course._id}`)
+    }
 
     return (
         <motion.div
@@ -42,7 +49,7 @@ const PopularClasses = () => {
                                                 <FaPeopleArrows />{singleClass?.enroll_student}
 
                                             </div>
-                                            <button className="btn btn-primary">Learn now!</button>
+                                            <button onClick={() => viewMore(singleClass)} className="btn btn-primary">Learn now!</button>
                                         </div>
                                     </div>
                                 </div>

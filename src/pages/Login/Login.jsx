@@ -10,12 +10,13 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const Login = () => {
     const { theme } = useTheme()
     const [showPassword, setShowPassword] = useState(false);
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit, setValue } = useForm()
     const { signIn, googleSignIn } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
     const [loginError, setLoginError] = useState('')
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -79,9 +80,22 @@ const Login = () => {
             }).catch(error => setLoginError(error.message));
     }
 
+    const adminFillOut = () => {
+        setValue('email', 'aa@aa.aa');
+        setValue('password', '123456A!');
+    }
+    const instructorFillOut = () => {
+        setValue('email', 'tt@aa.aa');
+        setValue('password', '123456A!');
+    }
+    const studentFillOut = () => {
+        setValue('email', 'aq@aa.aa');
+        setValue('password', '123456A!');
+    }
+
     return (
-        <div className="h-[600px] flex justify-center items-center">
-            <div className="w-96 p-7 border rounded-md">
+        <div className="h-[600px] flex flex-col md:flex-row justify-center items-center gap-10">
+            <div className="w-96 p-7 border rounded-md order-2 md:order-1">
                 <h2 className={`text-4xl text-center font-semibold ${theme === 'light' ? 'text-[#DC2C5C]' : 'text-[#ffffff]'}`}>Login</h2>
                 <form onSubmit={handleSubmit((handleLogin))}>
                     <div className="form-control w-full max-w-xs">
@@ -128,6 +142,12 @@ const Login = () => {
                 <p className={`${theme === 'light' ? 'text-[#DC2C5C]' : 'text-[#ffffff]'} mt-3`}>New to YogaLab ? <Link to='/register' className="text-blue-700">Create an account</Link></p>
                 <div className="divider">OR</div>
                 <button onClick={handleGoogleSignIn} className={`btn btn-outline w-full ${theme === 'light' ? 'text-[#DC2C5C] btn-secondary' : 'text-[#ffffff]'}`}>CONTINUE WITH GOOGLE</button>
+            </div>
+
+            <div className="flex flex-col gap-5 order-1 md:order-2 mt-32 md:mt-0">
+                <button onClick={adminFillOut}  className={`btn btn-outline w-full ${theme === 'light' ? 'text-[#DC2C5C] btn-secondary' : 'text-[#ffffff]'}`}>Admin</button>
+                <button onClick={instructorFillOut} className={`btn btn-outline w-full ${theme === 'light' ? 'text-[#DC2C5C] btn-secondary' : 'text-[#ffffff]'}`}>Instructor</button>
+                <button onClick={studentFillOut} className={`btn btn-outline w-full ${theme === 'light' ? 'text-[#DC2C5C] btn-secondary' : 'text-[#ffffff]'}`}>Student</button>
             </div>
 
         </div>

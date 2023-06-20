@@ -14,7 +14,6 @@
     /* ... define other light mode colors */
 }
 
-
 .StripeElement,
 .StripeElementIdeal,
 .StripeElementP24,
@@ -52,6 +51,7 @@
 .StripeElementFpx {
     padding: 0;
 }
+
 .loading-container {
     display: flex;
     justify-content: center;
@@ -88,4 +88,70 @@
     background-color: #619f04;
 }
 
+/* Sidebar animation */
+.sidebar {
 
+    transition: width 0.5s ease;
+}
+
+
+.show-menu {
+    display: block;
+    animation: fadeIn 1.5s ease;
+}
+
+.hidden-menu {
+    display: none;
+}
+
+.menu {
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.tab {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    color: #37bc12;
+    background-color: transparent;
+    transition: border-color 0.3s ease;
+    margin-top: -10px;
+}
+
+.tab.active {
+    border-color: #333;
+}
+
+.scroll-tab-item {
+    display: flex;
+    border-right: 2px solid #817f7f;
+}
+
+.scroll-tab-item:last-child {
+    border-right: none;
+}
+
+.tab-icon {
+    margin-right: 5px;
+}
+
+.tab-arrow-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: -10px;
+}
+
+/* Add any additional styles as needed */
